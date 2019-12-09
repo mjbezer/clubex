@@ -27,7 +27,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    { 
+
+        if (auth()->user()->category==0){
         $taxa = RendimentoBaseMes::first();
         $associados = Associado::where('user_id', auth()->user()->id)->get();
         foreach($associados as $associado){
@@ -45,18 +47,20 @@ class HomeController extends Controller
             ->with('taxa', $taxa)
             ->with('chart', $chart)
             ->with('comissoes', $comissoes);
-        
+        }else{
+            return redirect('/associates');
+        }
     }
 
     public function totalCommission($associado_id)
     {
         $comissoesTotal = Comissao::getSumCommission($associado_id);
-        if($comissoesTotal > 0){
+        if($comissoesTotal){
             return  $comissoesTotal;
         }else{
             return  $comissoesTotal=0;
         }
-        dd($comissoesTotal);
+      
     }
 
     public function monthProfit($associado_id)
@@ -109,6 +113,7 @@ class HomeController extends Controller
 
     public function chart($associado_id)
     {
+         $chart= [];
          $comissoes = Comissao::where('associado_id', $associado_id)
                         ->where('status',0)->get();
         foreach($comissoes as $comissao){
@@ -117,6 +122,7 @@ class HomeController extends Controller
                         'rendimento' => $comissao->rendimento->last()->saldo_corrente - $comissao->comissao
                     ];
         }
+        
         return $chart;
     }
 }
