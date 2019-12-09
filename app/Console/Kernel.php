@@ -28,8 +28,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-       $schedule->command('AdicionaRendimento:adicionar')->dailyAt('08:21');
-       //$schedule->command('AdicionaRendimento:adicionar')->everyMinute();
+       //$schedule->command('AdicionaRendimento:adicionar')->dailyAt('08:00');
+       $schedule->command('AdicionaRendimento:adicionar')->everyFifteenMinutes();
     }
 
     /**

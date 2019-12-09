@@ -41,8 +41,6 @@
                         <td class="text-right">
                             <button type="button" value="{{ $associado->id}}" onClick="openModal(this.value);"
                                 class="btn btn-sm btn-outline-success"><i class="fa fa-dollar"></i></button>
-                            <a href="/associate/getById/{{$associado->id}}"
-                                class=" btn btn-sm btn-outline  -primary "><i class="md md-edit"></i></a>
                             <a href="/associete/destroy/{{$associado->id}}" class="btn btn-sm btn-outline-warning"><i
                                     class="fa fa-trash"></i></a>
                         </td>

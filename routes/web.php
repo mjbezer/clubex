@@ -61,4 +61,4 @@ Route::get('/cash/getAll', 'SaqueController@getAll');
  */
 
  Route::get('/user/editPassword/{id}', 'UsuarioController@editPassword');
- Route::put('/user/updatePassword/{id}', 'usuarioController@updatePassword');
+ Route::put('/user/updatePassword/{id}', 'UsuarioController@updatePassword');
